@@ -1,4 +1,4 @@
-package com.tasklistie.todosservice.resources;
+/* package com.tasklistie.todosservice.resources;
 
 import com.tasklistie.todosservice.models.Info;
 import com.tasklistie.todosservice.models.RegisterItem;
@@ -28,8 +28,8 @@ public class TodosListe {
         );
 
         return infos.stream().map(info -> {
-            restTemplate.getForObject("http://localhost:8082/todosinfo/" + infos.getTodoID, Info.class);
-            new RegisterItem(4, "This is my first task", false)
+            Info info = restTemplate.getForObject("http://localhost:8082/todosinfo/" + info.getTodoID(), Info.class);
+            return new RegisterItem(info.getTodoID(), "This is my first task", false);
         })
             .collect(Collectors.toList());
 
@@ -39,6 +39,7 @@ public class TodosListe {
         /*return Collections.singletonList(
                 new RegisterItem(4, "This is my first task", false)
         );
-        */
+
     }
 }
+*/

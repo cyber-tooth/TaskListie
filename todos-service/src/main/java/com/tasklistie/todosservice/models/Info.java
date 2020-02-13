@@ -6,6 +6,10 @@ public class Info {
     private String category;
     private boolean favorite;
 
+    public Info(){
+
+    }
+
     public Info(String todoID, String category, boolean favorite) {
         this.todoID = todoID;
         this.category = category;
