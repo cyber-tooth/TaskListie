@@ -1,0 +1,14 @@
+version: '2'
+services:
+  mic_todos:
+    build:
+      context: ./todos-service
+      dockerfile: deploy/Dockerfile
+    ports:
+      - "8081:8080/tcp"
+    volumes:
+      - mic_h2_db:/database
+    restart: on-failure:2
+    container_name: mic_auth
+volumes:
+  mic_h2_db:
