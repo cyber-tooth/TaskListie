@@ -1,44 +1,54 @@
-Fullstack development of a Todo list with Spring Boot, Maven, Thymeleaf, Eurika, Hystrix, H2 DB
+Dokumentation Task-Liste <br>
+Projekt von:
+Ksenia Tereshenkova s0564412, 
+Kübra Demir         s0553666, 
+Adriana Grotseva    s0527080, 
+Anna Skolov         s0563332
 
-Project description
+1.Thema
+  In unserem Projekt haben wir eine Taskliste entwickelt. Ein User kann sich auf der Seite registrieren und anschließend einloggen. Nach
+  dem Log-In kommt er auf seine individuelle Taskliste. 
+  Der Aufbau der Taskliste sieht folgendermaßen aus: 
+ -Unter dem Reiter Add Item, kann der User eine beliebige Task erstellen.
+ -Beim klicken auf das add-Button wird die Task in den Reiter ‚ToDo‘ übernommen. Dies ist die ToDo-Liste vom User
+ -Bei der ‚ToDo‘-Liste hat der User die Möglichkeit die Task zu editieren (bzw. umbenennen), zu löschen oder ein Häkchen zu setzen falls
+  die Task abgearbeitet wurde. 
+ -Wenn ein Häkchen gesetzt wird, erscheint die Task in dem Reiter ‚completed‘. 
+ -In ‚completed‘ stehen abgeschlossene Tasks. Der User hat hier dieselben Möglichkeiten wie auf dem Reiter ‚ToDo‘. Ergänzend kommt noch
+  hinzu, dass der User das Häkchen wieder rausnehmen kann und die Task dann wieder zurück in die ‚ToDo‘-Liste kommt. 
 
-Installation
-Dependencies
-Git, of course, installed on your local machine.
-Maven to compile and run the project.
-Spring dependencies:
-Assuming you have Git and Maven on your local machine you will run the following commands. On the terminal of your choice change directories to where you want the cloned project files to download and run:
+2.Architektur
+  Wir haben uns erst einmal Gedanken darüber gemacht, wie wir unser Projekt aufbauen können. Dazu ist es wichtig zu wissen, welche
+  Microservices wir überhaupt brauchen, um eine TaskListe entwickeln zu können. In den Folgenden Punkten gehen wir genauer darauf ein 
+  welche Technologien in unserem Projekt vorkommen und welche Microservices wir entwickelt haben. 
+  a.Technologien
+    -	Spring Boot: Unser Backend Code wurde hauptsächlich mit Springboot realisiert.  Dabei war es wichtig REST-Services zu verwenden um
+      die Kommunikation zwischen unseren Microservices zu ermöglichen. 
+    -	Spring Data JPA 
+    -	Spring Web
+    -	Thymeleaf: Mit Thymeleaf haben wir unsere UI erstellt. 
+    -	Eureka
+    -	Docker
+    -	H2 Datenbank
+    - resilience Fallback Netflix
+    
+  b. Microservices
+     Unsere Applikation hat folgende Microservices: 
+     auth-service: Dieser Service übernimmt die gesamte Authentifizierung. Sie ist zuständig für das registrieren und den Login.
+     eureka-service: 
+     frontend-service: Der frontend-Service bildet unsere gesamte UI. Sie kommuniziert mit allen anderen Services. 
+     todos-infos-service: 
+     todos-service:
 
-git clone URL
-Since we are using Maven to run/build this project you will execute the following at the project root.
+3. Anleitung
+  - Added jQuery code to call auth service for registration https://github.com/cyber-  tooth/TaskListie/blob/feature/dockerize/frontend/src/main/resources/public/vt_register.html
+  - Added config classes to allow cross origin, and to disable csrf https://github.com/cyber-  tooth/TaskListie/commit/5a35d392a42951bfbd58454f7b3b7d463bd8e027
+   - in todos-service: docker-compose build (to build the image or build the latest image with changes)
+   - docker-compose up (starts the docker)
+   - our Dockerfile is in deploy directory because we want to keep clean the path directory so everything that is related to deployment
+    (eg certificates) would go to that directory
+   - docker-compose.yml file is to help to run it and because we want to run in the same way we put it in main folder tasklistie so then
+     we have to run only one command instead of 5
+   - docker-compose down (shuts it down)
+   - docker-compose up -d (runs docker on the background so you can use terminal while its building)
 
-mvn spring-boot:run
-This will compile and startup a Tomcat server on your localhost. In your Web browser go to http://localhost:8080/ and check it out.
-
-Docker Setup
-- Copy `docker-compose.yml.dist` into `docker-compose.yml`
-- Run `docker-compose build`
-- Run `docker-compose up`
-
-Backend
-Spring
-H2 DB
-As mentioned Spring Boot is the foundation for the server side. An H2 (in memory Java-based) SQL database is used as the data store. The choice of H2 was solely for simplicity of the demo, since no installation is required. Also included is the Spring implementation of the Java Persistence API (JPA). This allows for easy DB access using annotations and *Repository interfaces. Rounding off the backend is the REST Spring Boot Starter to support the RESTful APIs our React Javascript is going to call. You can read more about Spring Boot Starters and get a list of the many that are provided at the link provided. In short though, as stated:
-
-MVC
-We are following the typical layout specified in the Spring Boot Docs with an Application class on the root package using a @SpringBootApplication annotation to explicitly identify our main application class. This class does two things of interest. First it kicks off our Spring Boot app and second imports our WebConfiguration class.
-
-The WebConfiguration is also very simple doing one thing. By extending the RepositoryRestConfigurerAdapter class and overriding its configureRepositoryRestConfiguration method it routes all of the RESTful API endpoints through the "/api" path.
-
-http://localhost:8080/api/persons
-There is a single controller class in the project, AboutController, that routes requests to the root path to the "index.html" page. Which is actually our one Mustache-templated page. It also looks for the first Person in our database and puts it as the model for Mustache to use.
-
-Database Population
-With Spring Boot there is no need for reading and loading in a SQL file, we can do everything we need to populate or H2 database - right in Java. Spring has various events that you can hook into and the AboutLoader class takes advantage of ContextRefreshedEvent that is triggered when the ApplicationContext gets initialized or refreshed.
-
-This class does a couple things. First it used the AutoWired annotation to inject in instances of our *Repository JPA classes and set them to corresponding fields. The second is overrdiding the onApplicationEvent method and it is in this method that we use all of those Builder static nested classes to populate the database with content.
-
-Frontend
-The frontend is built using React and Material-UI, which is a set of React components following Google's Material Design. The React components call the JPA fed REST endpoints to populate themselves. CSS is generated at build time from the LESS files in the "styles" directory.
-
-Webpack2 is used to build and bundle up our Javascript as well as compiling our LESS files into CSS and injecting into the HTML head element. The POM file also contains a plugin that will install Node, Node Package Manager (NPM) and execute the Webpack build.
