@@ -2,6 +2,7 @@ package com.tasklistie.todosservice.controller;
 
 import com.tasklistie.todosservice.models.TaskItem;
 import com.tasklistie.todosservice.repo.TaskRepo;
+import com.tasklistie.todosservice.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,10 +27,16 @@ public class TaskController {
         return taskRepo.save(taskItem);
     }
 
-    @PutMapping // PUT to edit and save the data for the task, needs same validation as for POST, pass the ID
-    public TaskItem update(@Valid @NotNull @RequestBody TaskItem taskItem){ //to update the data we need to send all the data back
-        return taskRepo.save(taskItem);
-    }
+    @PutMapping("/{id}")
+    public TaskItem update(@Valid @NotNull @RequestBody TaskItem updateTaskItem, @PathVariable Long id) {
+        return taskRepo.findById(id)
+            .map(taskItem -> {
+                taskItem.setText(updateTaskItem.getText());
+                taskItem.setDone(updateTaskItem.isDone());
+                return taskRepo.save(taskItem);
+            })
+            .orElseThrow(() -> new ResourceNotFoundException("TaskItem", id));
+      }
 
     @DeleteMapping("/{taskID}")
     public void delete(@PathVariable Long taskID){
