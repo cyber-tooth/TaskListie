@@ -4,7 +4,7 @@ Adriyana Grotseva    s0527080, <br>
 Anna Sokolov         s0563332, <br>
 Ksenia Tereshenkova s0564412, <br>
 Kübra Demir         s0553666 <br>
-<br><br>
+<br>
 **1.Thema**<br>
   In unserem Projekt haben wir eine Taskliste entwickelt. Ein User kann sich auf der Seite registrieren und anschließend einloggen. Nach dem Log-In kommt er auf seine individuelle Taskliste. <br>
   Der Aufbau der Taskliste sieht folgendermaßen aus: <br>
@@ -33,6 +33,7 @@ Kübra Demir         s0553666 <br>
      frontend-service: Der frontend-Service bildet unsere gesamte UI. Sie kommuniziert mit allen anderen Services. <br>
      todos-infos-service: Dieser Service verteilt die Tasks in Kategorien sowohl erlaubt, die Tasks zu Favoriten hinzuzufügen<br>
      todos-service: Dieser Service lässt, die eingegebene Tasks zu speichern und später die erledigten Tasks abzuhacken.
+<br>
 <br><br>
 **3. Anleitung**<br>
   - Added jQuery code to call auth service for registration https://github.com/cyber-  tooth/TaskListie/blob/feature/dockerize/frontend/src/main/resources/public/vt_register.html<br>
