@@ -1,7 +1,10 @@
 <html>
 <head>
-    <title>Todo App</title>
+    <title>To-do App</title>
     <!-- <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'> -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
     <style>
 
         /* Basic Style */
@@ -128,18 +131,14 @@
 </head>
 <body>
 
-
-
-
 <div class="container">
-    <p>
+    <p id="newTask">
         <label for="new-task">Add Item</label>
         <input id="new-task" type="text">
-        <
         <button>Add</button>
     </p>
 
-    <h3>Todo</h3>
+    <h3>To-do</h3>
     <ul id="incomplete-tasks">
 
     </ul>
@@ -149,14 +148,35 @@
         <li><input type="checkbox" checked><label>See the Doctor</label><input type="text"><button class="edit">Edit</button><button class="delete">Delete</button></li>
     </ul>
 </div>
+<script type="text/javascript" src="app.js"></script>
+<script>
+    var task = localStorage.getItem("task", "buy groceries");
 
+    $("#newTask").submit(function (e) {
+        e.preventDefault();
+        let $form = $(e.target),
+            data = getFormData($form);
+        console.log('submitted', );
 
-<script type="text/javascript" src="app.js">
+        saveTask(data);
+    });
 
+    function saveTask(data) {
+        $.post('http://localhost:8082/task', data, function (response) {
+            console.log(response);
+        })
+    }
 
+    function getFormData($form) {
+        var unindexed_array = $form.serializeArray();
+        var indexed_array = {};
 
+        $.map(unindexed_array, function (n, i) {
+            indexed_array[n['name']] = n['value'];
+        });
 
+        return indexed_array;
+    }
 </script>
-
 </body>
 </html>
