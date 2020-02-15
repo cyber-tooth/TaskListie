@@ -1,1 +1,47 @@
-<h1>Hello world</h1>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+
+<h2>Login</h2>
+<form id="loginForm">
+    <div class="form-group">
+        <label>Name: </label>
+        <input type="text" name="username" class="form-control" placeholder="Enter username" required/>
+    </div>
+    <div class="form-group">
+        <label>Passwort: </label>
+        <input type="password" name="password" class="form-control" placeholder="Enter password" required/>
+    </div>
+
+    <button type="submit">login</button>
+    <a href="vt_register.html">Not registered yet? Register here! </a>
+</form>
+<script>
+    var user = localStorage.getItem("lastname", "Smith");
+
+    $("#loginForm").submit(function (e) {
+        let $form = $(e.target);
+        e.preventDefault();
+        console.log('submitted', getFormData($form));
+    });
+
+    function getFormData($form) {
+        var unindexed_array = $form.serializeArray();
+        var indexed_array = {};
+
+        $.map(unindexed_array, function (n, i) {
+            indexed_array[n['name']] = n['value'];
+        });
+
+        return indexed_array;
+    }
+</script>
+</body>
+</html>
