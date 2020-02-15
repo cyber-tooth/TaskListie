@@ -38,5 +38,13 @@ services:
       - "8084:8080/tcp"
     restart: on-failure:2
     container_name: mic_frontend
+#  mic_eureka:
+#    build:
+#      context: ./eureka-service
+#      dockerfile: deploy/Dockerfile
+#    ports:
+#      - "8761:8080/tcp"
+#    restart: on-failure:2
+#    container_name: mic_eureka
 volumes:
   mic_h2_db:
