@@ -1,5 +1,8 @@
 package com.frontend.frontend.controller;
 
+import com.frontend.frontend.DTO.TaskDTO;
+import com.frontend.frontend.repo.TaskRepo;
+import com.frontend.frontend.resources.TaskService;
 import com.tasklistie.todosservice.DTO.TaskDTO;
 import com.tasklistie.todosservice.exception.ResourceNotFoundException;
 import com.tasklistie.todosservice.models.TaskItem;
