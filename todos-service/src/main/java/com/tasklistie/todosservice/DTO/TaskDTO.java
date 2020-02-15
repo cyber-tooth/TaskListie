@@ -1,33 +1,21 @@
-package com.tasklistie.todosservice.models;
+package com.tasklistie.todosservice.DTO;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
-
-@Entity
-public class TaskItem {
-
+public class TaskDTO {
     private long taskID;
-    @NotBlank  //means that the text that is submitted should contain something
     private String text;
     private boolean done;
     private long userID;
 
-
-    public TaskItem() {
+    public TaskDTO() {
     }
 
-    public TaskItem(long taskID, String text, boolean done, long userID) {
+    public TaskDTO(long taskID, String text, boolean done, long userID) {
         this.taskID = taskID;
         this.text = text;
         this.done = done;
-        this.userID=userID;
+        this.userID = userID;
     }
 
-    // id means it's primary key and generatedvalue that the value should be automatically generated
-    @Id
-    @GeneratedValue
     public long getTaskID() {
         return taskID;
     }

@@ -12,7 +12,7 @@
 	<artifactId>frontend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>frontend</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Frontend for Tasklistie</description>
 
 	<properties>
 		<java.version>1.8</java.version>

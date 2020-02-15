@@ -33,6 +33,7 @@ public class TaskController {
             .map(taskItem -> {
                 taskItem.setText(updateTaskItem.getText());
                 taskItem.setDone(updateTaskItem.isDone());
+                taskItem.setUserID(updateTaskItem.getUserID());
                 return taskRepo.save(taskItem);
             })
             .orElseThrow(() -> new ResourceNotFoundException("TaskItem", id));
