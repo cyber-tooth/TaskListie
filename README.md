@@ -3,7 +3,7 @@ Projekt von: <br>
 Ksenia Tereshenkova s0564412, <br>
 Kübra Demir         s0553666, <br>
 Adriana Grotseva    s0527080, <br>
-Anna Skolov         s0563332<br>
+Anna Sokolov         s0563332<br>
 <br><br>
 1.Thema<br>
   In unserem Projekt haben wir eine Taskliste entwickelt. Ein User kann sich auf der Seite registrieren und anschließend einloggen. Nach dem Log-In kommt er auf seine individuelle Taskliste. <br>
