@@ -5,7 +5,7 @@ Kübra Demir         s0553666, <br>
 Adriana Grotseva    s0527080, <br>
 Anna Sokolov         s0563332<br>
 <br><br>
-1.Thema<br>
+**1.Thema**<br>
   In unserem Projekt haben wir eine Taskliste entwickelt. Ein User kann sich auf der Seite registrieren und anschließend einloggen. Nach dem Log-In kommt er auf seine individuelle Taskliste. <br>
   Der Aufbau der Taskliste sieht folgendermaßen aus: <br>
  -Unter dem Reiter Add Item, kann der User eine beliebige Task erstellen.<br>
@@ -14,9 +14,9 @@ Anna Sokolov         s0563332<br>
  -Wenn ein Häkchen gesetzt wird, erscheint die Task in dem Reiter ‚completed‘. <br>
  -In ‚completed‘ stehen abgeschlossene Tasks. Der User hat hier dieselben Möglichkeiten wie auf dem Reiter ‚ToDo‘. Ergänzend kommt noch hinzu, dass der User das Häkchen wieder rausnehmen kann und die Task dann wieder zurück in die ‚ToDo‘-Liste kommt.<br> 
 <br><br>
-2.Architektur<br>
+**2.Architektur**<br>
   Wir haben uns erst einmal Gedanken darüber gemacht, wie wir unser Projekt aufbauen können. Dazu ist es wichtig zu wissen, welche Microservices wir überhaupt brauchen, um eine TaskListe entwickeln zu können. In den Folgenden Punkten gehen wir genauer darauf ein, welche Technologien in unserem Projekt vorkommen und welche Microservices wir entwickelt haben. <br>
-  a.Technologien: <br>
+  **a.Technologien:** <br>
     -	Spring Boot: Unser Backend Code wurde hauptsächlich mit Springboot realisiert.  Dabei war es wichtig REST-Services zu verwenden um die Kommunikation zwischen unseren Microservices zu ermöglichen. <br>
     -	Spring Data JPA <br>
     -	Spring Web<br>
@@ -26,7 +26,7 @@ Anna Sokolov         s0563332<br>
     -	H2-Datenbank<br>
     - resilience Fallback Netflix<br>
     <br><br>
-  b. Microservices<br>
+  **b. Microservices**<br>
      Unsere Applikation hat folgende Microservices: <br>
      auth-service: Dieser Service übernimmt die gesamte Authentifizierung. Sie ist zuständig für das registrieren und den Login.<br>
      (eureka-service: Der Service zum Verbinden von anderen MS)<br>
@@ -34,7 +34,7 @@ Anna Sokolov         s0563332<br>
      todos-infos-service: Dieser Service verteilt die Tasks in Kategorien sowohl erlaubt, die Tasks zu Favoriten hinzuzufügen<br>
      todos-service: Dieser Service lässt, die eingegebene Tasks zu speichern und später die erledigten Tasks abzuhacken.
 <br><br>
-3. Anleitung<br>
+**3. Anleitung**<br>
   - Added jQuery code to call auth service for registration https://github.com/cyber-  tooth/TaskListie/blob/feature/dockerize/frontend/src/main/resources/public/vt_register.html<br>
   - Added config classes to allow cross origin, and to disable csrf https://github.com/cyber-  tooth/TaskListie/commit/5a35d392a42951bfbd58454f7b3b7d463bd8e027<br>
    - in todos-service: docker-compose build (to build the image or build the latest image with changes)<br>
