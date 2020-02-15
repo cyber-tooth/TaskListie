@@ -1,8 +1,8 @@
 version: '2'
 services:
-  mic_todos:
+  mic_auth:
     build:
-      context: ./todos-service
+      context: ./auth
       dockerfile: deploy/Dockerfile
     ports:
       - "8081:8080/tcp"
@@ -10,5 +10,41 @@ services:
       - mic_h2_db:/database
     restart: on-failure:2
     container_name: mic_auth
+  mic_todos:
+    build:
+      context: ./todos-service
+      dockerfile: deploy/Dockerfile
+    ports:
+      - "8082:8080/tcp"
+    volumes:
+      - mic_h2_db:/database
+    restart: on-failure:2
+    container_name: mic_todos
+  mic_todos_info:
+    build:
+      context: ./todos-infos-service
+      dockerfile: deploy/Dockerfile
+    ports:
+      - "8083:8080/tcp"
+    volumes:
+      - mic_h2_db:/database
+    restart: on-failure:2
+    container_name: mic_todos_info
+  mic_frontend:
+    build:
+      context: ./frontend
+      dockerfile: deploy/Dockerfile
+    ports:
+      - "8084:8080/tcp"
+    restart: on-failure:2
+    container_name: mic_frontend
+#  mic_eureka:
+#    build:
+#      context: ./eureka-service
+#      dockerfile: deploy/Dockerfile
+#    ports:
+#      - "8761:8080/tcp"
+#    restart: on-failure:2
+#    container_name: mic_eureka
 volumes:
   mic_h2_db:
