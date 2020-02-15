@@ -3,6 +3,7 @@ package com.tasklistie.todosinfosservice.service;
 import com.tasklistie.todosinfosservice.models.CategoryEntity;
 import com.tasklistie.todosinfosservice.models.FavoriteEntity;
 import com.tasklistie.todosinfosservice.repository.CategoryRepository;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +18,7 @@ public class CategoryService {
     public List<CategoryEntity> getAllUserCategory(Integer userId){
         return categoryRepository.findAllByUserId(userId);
     }
+
     public void addTaskToCategorie(Integer userId, Integer taskId) {
         categoryRepository.save(new CategoryEntity(userId, taskId));
     }
