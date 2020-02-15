@@ -1,9 +1,9 @@
-<b>Dokumentation Task-Liste</b> <br>
+**Dokumentation Task-Liste** <br>
 Projekt von: <br>
+Adriyana Grotseva    s0527080, <br>
+Anna Sokolov         s0563332, <br>
 Ksenia Tereshenkova s0564412, <br>
-Kübra Demir         s0553666, <br>
-Adriana Grotseva    s0527080, <br>
-Anna Sokolov         s0563332<br>
+Kübra Demir         s0553666 <br>
 <br><br>
 **1.Thema**<br>
   In unserem Projekt haben wir eine Taskliste entwickelt. Ein User kann sich auf der Seite registrieren und anschließend einloggen. Nach dem Log-In kommt er auf seine individuelle Taskliste. <br>
@@ -25,7 +25,7 @@ Anna Sokolov         s0563332<br>
     -	Docker<br>
     -	H2-Datenbank<br>
     - resilience Fallback Netflix<br>
-    <br><br>
+    <br>
   **b. Microservices**<br>
      Unsere Applikation hat folgende Microservices: <br>
      auth-service: Dieser Service übernimmt die gesamte Authentifizierung. Sie ist zuständig für das registrieren und den Login.<br>
